@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Clock in:</strong>
+  <%= @toki.clock_in %>
+</p>
+
+<p>
+  <strong>Clock out:</strong>
+  <%= @toki.clock_out %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @toki.note %>
+</p>
+
+<%= link_to 'Edit', edit_toki_path(@toki) %> |
+<%= link_to 'Back', tokis_path %>

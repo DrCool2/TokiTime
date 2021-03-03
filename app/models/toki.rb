@@ -1,0 +1,2 @@
+class Toki < ApplicationRecord
+end

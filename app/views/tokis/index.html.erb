@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tokis</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Clock in</th>
+      <th>Clock out</th>
+      <th>Note</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tokis.each do |toki| %>
+      <tr>
+        <td><%= toki.clock_in %></td>
+        <td><%= toki.clock_out %></td>
+        <td><%= toki.note %></td>
+        <td><%= link_to 'Show', toki %></td>
+        <td><%= link_to 'Edit', edit_toki_path(toki) %></td>
+        <td><%= link_to 'Destroy', toki, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Toki', new_toki_path %>
