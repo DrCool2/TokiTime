@@ -12,15 +12,9 @@ class Toki < ApplicationRecord
 
   def self.hours(id)
     toki = Toki.find_by_id(id)
-      toki_seconds = (toki.clock_out - toki.clock_in)
-      toki_hours = ( toki_seconds /60 ) /60
-      toki_hours = toki.clock_out.hour - toki.clock_in.hour
-      toki_minutes = (toki.clock_out - toki.clock_in)/60
-=begin
-      toki_hours = "#{toki_hours} #{toki_minutes}"
-=end
-      toki_hours = (toki.clock_out - toki.clock_in)/60/60
-      if toki_hours < 1 then toki_hours = toki_hours end # how to separate Hours from Minutes
-      return toki_hours;
+
+    toki_hours = (toki.clock_out - toki.clock_in)/60/60 # original = seconds, /60 =  in minutes, /60/60 = in hours
+    if toki_hours < 1 then toki_hours = toki_hours.round(3) end # how to separate Hours from Minutes
+    return toki_hours;
   end
 end
