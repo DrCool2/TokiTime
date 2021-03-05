@@ -14,12 +14,12 @@
 
   <div class="field">
     <%= form.label :clock_in %>    
-    <%= form.datetime_select :clock_in %>
+    <%= form.datetime_select :clock_in, ampm: true %>
   </div>
 
   <div class="field">
     <%= form.label :clock_out %>
-    <%= form.datetime_select :clock_out %>
+    <%= form.datetime_select :clock_out, ampm: true %>
   </div>
 
   <div class="field">
