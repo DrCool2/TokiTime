@@ -2,12 +2,12 @@
 
 <p>
   <strong>Clock in:</strong>
-  <%= @toki.clock_in %>
+  <%= @toki.clock_in.strftime('%m-%d-%Y %l:%M %p') %>
 </p>
 
 <p>
   <strong>Clock out:</strong>
-  <%= @toki.clock_out %>
+  <%= @toki.clock_out.strftime('%m-%d-%Y %l:%M %p') %>
 </p>
 
 <p>

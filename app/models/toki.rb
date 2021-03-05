@@ -1,5 +1,10 @@
 class Toki < ApplicationRecord
 
+  validates :clock_in, presence: true
+  validates :clock_out, presence: true
+  validates :clock_out, date: {after_or_equal_to: :clock_in}
+
+
 
   def self.hours(id)
     toki = Toki.find_by_id(id)

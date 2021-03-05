@@ -30,6 +30,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 # Bootstrap
 gem 'bootstrap', '~> 5.0.0.beta2'
+# Date Validator
+gem 'date_validator', '~> 0.10.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
