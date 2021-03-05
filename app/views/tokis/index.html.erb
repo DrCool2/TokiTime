@@ -4,6 +4,24 @@
 <h5>Tokis are time entries with notes that help you track how long it took to complete a task.</h5>
 <hr>
 
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="nav nav-tabs">
+<!--
+        <div class="nav-item">
+  	  <span class="navbar-brand mb-0 h1">Toki Time</span>
+	</div>
+-->
+	<div class="nav-item">	  
+	  <%= link_to 'New Toki', new_toki_path, class: "btn" %>
+	</div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
 <table>
   <thead>
     <tr>
@@ -34,4 +52,3 @@
 
 <br>
 
-<%= link_to 'New Toki', new_toki_path %>
