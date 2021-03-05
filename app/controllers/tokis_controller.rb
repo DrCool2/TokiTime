@@ -3,7 +3,33 @@ class TokisController < ApplicationController
 
   # GET /tokis or /tokis.json
   def index
-    @tokis = Toki.all
+=begin
+    if params[:sort_direction].nil? || params[:sort_direction] == "asc"
+=end
+    if params[:sort_direction].nil? || params[:sort_direction] == "asc"
+      sort_direction = "desc"
+    elsif params[:sort_direction] == "desc"
+      sort_direction = "asc"
+    else
+      sort_direction = "desc"
+    end
+    @sort_direction = sort_direction
+
+    if Toki.column_names.include?(params[:sort])
+      # && @sort_direction == "desc" || "asc"
+      @tokis = Toki.order("#{params[:sort]} #{sort_direction}")
+    elsif params[:sort] == "clock_in_time"
+      @tokis = Toki.all.order("clock_in #{sort_direction}")
+    elsif params[:sort] == "clock_out_time"
+      @tokis = Toki.all.order("clock_out #{sort_direction}")
+    elsif params[:sort] == "duration_in_hours"
+      # does not work yet ---> @tokis = Toki.duration()
+      @tokis = Toki.all.order("clock_in #{sort_direction}")
+    else
+      @tokis = Toki.order("clock_in #{sort_direction}")
+    end
+
+
   end
 
   # GET /tokis/1 or /tokis/1.json
@@ -64,6 +90,6 @@ class TokisController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def toki_params
-      params.require(:toki).permit(:clock_in, :clock_out, :note)
+      params.require(:toki).permit(:clock_in, :clock_out, :note, :sort_direction)
     end
 end

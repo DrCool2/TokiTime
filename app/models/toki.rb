@@ -1,5 +1,6 @@
 class Toki < ApplicationRecord
 
+
   validates :clock_in, presence: true
   validates :clock_out, presence: true
   validates :clock_out, date: {after_or_equal_to: :clock_in}
@@ -13,6 +14,16 @@ class Toki < ApplicationRecord
     if toki_hours < 1 then toki_hours = toki_hours.round(3) end # how to separate Hours from Minutes
     
     return toki_hours;
+  end
+
+  def self.duration()
+    toki = Toki.all
+    duration = []
+
+    toki.each do |t| duration.push([Toki.hours(t.id), t.id]) end
+    return duration.sort
+    binding.pry
 
   end
+
 end

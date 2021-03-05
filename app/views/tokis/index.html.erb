@@ -12,22 +12,22 @@
     <caption>List of Toki Time Entries</caption>
     <thead class="table-warning">
       <tr>
-        <th scope="col">Clock In Date</th>
-        <th scope="col">Time</th>
-        <th scope="col">Clock Out Date</th>
-        <th scope="col">Time</th>
-        <th scope="col">Duration (in Hours)</th>
-        <th scope="col">Duration (approximate)</th>
-        <th scope="col">Short Version</th>
+        <th scope="col"><%= link_to "Clock In Date", sort: "clock_in", sort_direction: @sort_direction %> </th>
+        <th scope="col"><%= link_to "Clock In Time", sort: "clock_in_time", sort_direction: @sort_direction %> </th>
+        <th scope="col"><%= link_to "Clock Out Date", sort: "clock_out", sort_direction: @sort_direction %> </th>
+        <th scope="col"><%= link_to "Clock Out Time", sort: "clock_out_time", sort_direction: @sort_direction %> </th>
+        <th scope="col"><%= link_to "Duration (in Hours)", sort: "duration_in_hours", sort_direction: @sort_direction %> </th>
+        <th scope="col"><%= link_to "Duration (approximate)", sort: "duration_approximate", sort_direction: @sort_direction %> </th>
+        <th scope="col"><%= link_to "Short Version", sort: "short_version", sort_direction: @sort_direction %> </th>
         <th scope="col">Notes</th>
         <th colspan="3"></th>
       </tr>
     </thead>
 
     <tbody>
-      <% @tokis.order(clock_in: :desc).each do |toki| %>
+      <% @tokis.each do |toki| %>
         <tr>
-          <td class="align-right"><%= toki.clock_in.strftime('%A, %B %d %Y') %></td>
+          <td><%= toki.clock_in.strftime('%A, %B %d %Y') %></td>
           <td><%= toki.clock_in.strftime('%l:%M %p') %></td>
           <td><%= toki.clock_out.strftime('%A, %B %d %Y') %></td>
           <td><%= toki.clock_out.strftime('%_l:%M %p') %></td>
