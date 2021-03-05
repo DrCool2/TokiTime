@@ -11,8 +11,9 @@
     </div>
   <% end %>
 
+
   <div class="field">
-    <%= form.label :clock_in %>
+    <%= form.label :clock_in %>    
     <%= form.datetime_select :clock_in %>
   </div>
 
@@ -23,10 +24,11 @@
 
   <div class="field">
     <%= form.label :note %>
-    <%= form.text_field :note %>
+    <%= form.text_area :note %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
+
 <% end %>
