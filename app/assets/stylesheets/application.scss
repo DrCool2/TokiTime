@@ -13,3 +13,5 @@
  *= require_tree .
  *= require_self
  */
+// Custom bootstrap variable must be set or imported *before* bootstrap.
+@import "bootstrap";
