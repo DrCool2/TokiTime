@@ -6,12 +6,12 @@ class TokisController < ApplicationController
 =begin
     if params[:sort_direction].nil? || params[:sort_direction] == "asc"
 =end
-    if params[:sort_direction].nil? || params[:sort_direction] == "asc"
-      sort_direction = "desc"
-    elsif params[:sort_direction] == "desc"
-      sort_direction = "asc"
+    if params[:sort_direction].nil? || params[:sort_direction].upcase == "ASC"
+      sort_direction = "DESC"
+    elsif params[:sort_direction] == "DESC"
+      sort_direction = "ASC"
     else
-      sort_direction = "desc"
+      sort_direction = "DESC"
     end
     @sort_direction = sort_direction
 
@@ -23,8 +23,7 @@ class TokisController < ApplicationController
     elsif params[:sort] == "clock_out_time"
       @tokis = Toki.all.order("clock_out #{sort_direction}")
     elsif params[:sort] == "duration_in_hours"
-      # does not work yet ---> @tokis = Toki.duration()
-      @tokis = Toki.all.order("clock_in #{sort_direction}")
+      @tokis = Toki.duration(sort_direction);
     else
       @tokis = Toki.order("clock_in #{sort_direction}")
     end

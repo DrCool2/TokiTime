@@ -16,14 +16,23 @@ class Toki < ApplicationRecord
     return toki_hours;
   end
 
-  def self.duration()
+  def self.duration(sort_direction = "ASC") # default is ASC
     toki = Toki.all
-    duration = []
+    toki_hours_list = []
+    toki_duration_sorted = []
+    sort_direction.upcase!
 
-    toki.each do |t| duration.push([Toki.hours(t.id), t.id]) end
-    return duration.sort
-    binding.pry
+    toki.each do |t| toki_hours_list.push([Toki.hours(t.id), t.id]) end
 
+    if    sort_direction == "ASC" then
+      toki_hours_list.sort.each do |d| toki_duration_sorted << Toki.find_by_id(d[1]) end
+    elsif sort_direction == "DESC"
+      toki_hours_list.sort.reverse.each do |d| toki_duration_sorted << Toki.find_by_id(d[1]) end
+    else
+      toki_duration_sorted = "toki.duration(sort_direction.upcase): sort_direction.upcase NOT specified. It should be ASC or DESC!!"
+    end
+
+    return toki_duration_sorted
   end
 
 end
