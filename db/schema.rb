@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_03_200409) do
+ActiveRecord::Schema.define(version: 2021_03_10_161037) do
+
+  create_table "statuses", force: :cascade do |t|
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "tokis", force: :cascade do |t|
     t.datetime "clock_in"
@@ -18,6 +24,8 @@ ActiveRecord::Schema.define(version: 2021_03_03_200409) do
     t.string "note"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "lov_status_id"
+    t.index ["lov_status_id"], name: "index_tokis_on_lov_status_id"
   end
 
 end

@@ -1,5 +1,5 @@
 class Toki < ApplicationRecord
-
+  belongs_to :lov_status
 
   validates :clock_in, presence: true
   validates :clock_out, presence: true
@@ -13,7 +13,7 @@ class Toki < ApplicationRecord
     toki_hours = (toki.clock_out - toki.clock_in)/60/60 # original = seconds, /60 =  in minutes, /60/60 = in hours
     if toki_hours < 1 then toki_hours = toki_hours.round(3) end # how to separate Hours from Minutes
     
-    return toki_hours.round(2);
+    return toki_hours.round(2)
   end
 
   def self.duration(sort_direction = "ASC") # default is ASC
@@ -24,7 +24,7 @@ class Toki < ApplicationRecord
 
     toki.each do |t| toki_hours_list.push([Toki.hours(t.id), t.id]) end
 
-    if    sort_direction == "ASC" then
+    if    sort_direction == "ASC"
       toki_hours_list.sort.each do |d| toki_duration_sorted << Toki.find_by_id(d[1]) end
     elsif sort_direction == "DESC"
       toki_hours_list.sort.reverse.each do |d| toki_duration_sorted << Toki.find_by_id(d[1]) end
