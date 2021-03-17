@@ -1,5 +1,5 @@
 class Toki < ApplicationRecord
-  belongs_to :lov_status
+  has_one :status
 
   validates :clock_in, presence: true
   validates :clock_out, presence: true
@@ -33,6 +33,10 @@ class Toki < ApplicationRecord
     end
 
     return toki_duration_sorted
+  end
+
+  def self.status(status_id)
+    Status.find(status_id).status.camelcase
   end
 
 end

@@ -89,6 +89,6 @@ class TokisController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def toki_params
-      params.require(:toki).permit(:clock_in, :clock_out, :note, :sort_direction)
+      params.require(:toki).permit(:clock_in, :clock_out, :note, :sort_direction, :status_id)
     end
 end

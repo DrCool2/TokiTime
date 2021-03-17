@@ -5,7 +5,7 @@
 <hr>
 
 <%= link_to 'New Toki', new_toki_path %> |
-<%= link_to 'New Status', new_lov_status_path %>
+<%= link_to 'New Status', new_status_path %>
 <hr>
 
 <div class="table-responsive">
@@ -13,6 +13,7 @@
     <caption>List of Toki Time Entries</caption>
     <thead class="table-warning">
       <tr>
+        <th scope="col"><%= link_to "Status", sort: "status_id", sort_direction: @sort_direction %></th>
         <th scope="col"><%= link_to "Clock In Date", sort: "clock_in", sort_direction: @sort_direction %> </th>
         <th scope="col"><%= link_to "Clock In Time", sort: "clock_in_time", sort_direction: @sort_direction %> </th>
         <th scope="col"><%= link_to "Clock Out Date", sort: "clock_out", sort_direction: @sort_direction %> </th>
@@ -28,12 +29,14 @@
     <tbody>
       <% @tokis.each do |toki| %>
         <tr>
+<!--          <td><%#= Status.find(toki.status_id).status %></td>-->
+          <td><%= Toki.status(toki.status_id) %></td>
           <td><%= toki.clock_in.strftime('%A, %B %d %Y') %></td>
           <td><%= toki.clock_in.strftime('%l:%M %p') %></td>
           <td><%= toki.clock_out.strftime('%A, %B %d %Y') %></td>
           <td><%= toki.clock_out.strftime('%_l:%M %p') %></td>
           <td><%= Toki.hours(toki.id) %></td>
-          <td><%= distance_of_time_in_words(toki.clock_in, toki.clock_out, include_seconds: false) %></td>
+          <td><%= distance_of_time_in_words(toki.clock_in, toki.clock_out, include_seconds: false).camelcase %></td>
           <td>
             <% if toki.clock_in.strftime('%-m/%-d') == toki.clock_out.strftime('%-m/%-d') %>
                 <%= toki.clock_in.strftime('%-m/%-d %_l:%M %p') %> - <%= toki.clock_out.strftime('%_l:%M %p') %>
