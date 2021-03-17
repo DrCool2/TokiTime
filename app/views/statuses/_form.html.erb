@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :status_order %>
+    <%= form.number_field :status_order, min: 1, max: 1000, value: @default_new_status_order %>
+  </div>
+
+  <div class="field">
     <%= form.label :status %>
     <%= form.text_field :status %>
   </div>

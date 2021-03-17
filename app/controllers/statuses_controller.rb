@@ -3,7 +3,7 @@ class StatusesController < ApplicationController
 
   # GET /statuses or /statuses.json
   def index
-    @statuses = Status.all
+    @statuses = Status.all.order(:status_order)
   end
 
   # GET /statuses/1 or /statuses/1.json
@@ -13,6 +13,7 @@ class StatusesController < ApplicationController
   # GET /statuses/new
   def new
     @status = Status.new
+    @default_new_status_order = Status.all.maximum(:status_order) + 1
   end
 
   # GET /statuses/1/edit
@@ -64,6 +65,6 @@ class StatusesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def status_params
-      params.require(:status).permit(:status)
+      params.require(:status).permit(:status, :status_order)
     end
 end

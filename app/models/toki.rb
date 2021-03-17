@@ -1,5 +1,5 @@
 class Toki < ApplicationRecord
-  has_one :status
+  belongs_to :status
 
   validates :clock_in, presence: true
   validates :clock_out, presence: true

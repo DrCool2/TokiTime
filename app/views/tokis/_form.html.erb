@@ -29,7 +29,8 @@
 
   <div class="field">
     <%= form.label :status %>
-    <%= form.collection_select(:status_id, Status.all, :id, :status, {include_blank: "Please Select a Status"}) %>
+    <%= form.collection_select(:status_id, Status.all.order(:status), :id, :status, {include_blank: "Please Select a Status"}) %>
+
   </div>
 
   <div class="actions">
