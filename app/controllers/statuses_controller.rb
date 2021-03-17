@@ -52,6 +52,7 @@ class StatusesController < ApplicationController
   def destroy
     @status.destroy
     respond_to do |format|
+      Status.reset_proper_status_order
       format.html { redirect_to statuses_url, notice: "Status was successfully destroyed." }
       format.json { head :no_content }
     end
