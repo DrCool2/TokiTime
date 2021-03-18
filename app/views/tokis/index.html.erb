@@ -5,7 +5,8 @@
 <hr>
 
 <%= link_to 'New Toki', new_toki_path %> |
-<%= link_to 'New Status', new_status_path %>
+<%= link_to 'New Status', new_status_path %> |
+<%= link_to 'ALL Statuses', statuses_path %> |
 <hr>
 
 <div class="table-responsive">
@@ -29,7 +30,6 @@
     <tbody>
       <% @tokis.each do |toki| %>
         <tr>
-<!--          <td><%#= Status.find(toki.status_id).status %></td>-->
           <td><%= Toki.status(toki.status_id) %></td>
           <td><%= toki.clock_in.strftime('%A, %B %d %Y') %></td>
           <td><%= toki.clock_in.strftime('%l:%M %p') %></td>

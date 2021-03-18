@@ -23,7 +23,7 @@ class TokisController < ApplicationController
     elsif params[:sort] == "clock_out_time"
       @tokis = Toki.all.order("clock_out #{sort_direction}")
     elsif params[:sort] == "duration_in_hours"
-      @tokis = Toki.duration(sort_direction);
+      @tokis = Toki.duration(sort_direction)
     else
       @tokis = Toki.order("clock_in #{sort_direction}")
     end
